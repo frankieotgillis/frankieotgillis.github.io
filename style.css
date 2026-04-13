@@ -1,5 +1,5 @@
 :root {
-  --screen-width: 768px;
+  --screen-width: min(90%, 768px);
 }
 
 body {
