@@ -4,7 +4,7 @@ body {
 }
 
 .content {
-  max-width: max(80%, 768px);
+  max-width: min(80%, 768px);
   margin: auto;
   padding-bottom: 50px;
 }
