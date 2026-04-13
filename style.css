@@ -65,7 +65,7 @@ a:visited {
 
 .topnav {
     overflow: hidden;
-    max-width: 768px;
+    max-width: min(80%, 768px);
     margin: auto;
 }
 
@@ -107,7 +107,7 @@ a:visited {
 .bottomnav {
     display: flex;
     justify-content: center;
-    max-width: 768px;
+    max-width: min(80%, 768px);
     margin: auto;
     font-size: 18px;
     font-family: "Rubik", sans-serif;
