@@ -33,15 +33,24 @@
 <body>
     <!-- Navigation bar -->
     <div class="topnavwrapper">
-        <div class="topnav">
+        <div class="topnav" id="myTopnav">
           <a href="index.html">Home</a>
           <a href="CV.html">CV</a>
           <a href="BlogArchive.html">Blog Archive</a>
+          <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+              <div id="myDropdown" class="dropdown-content">
+                  <a href="index.html">Home</a>
+                  <a href="CV.html">CV</a>
+                  <a href="BlogArchive.html">Blog Archive</a>
+              </div>
+          </div>
           <div class="name">Frankie Gillis</div>
         </div>
     </div>
     <div class="content">
         <h1>Home</h1>
+
         <p>
             This website is currently under construction.
         </p>
@@ -67,5 +76,27 @@
         </div>
     </div>
 </body>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 </html>
