@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Boring stuff -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+
+    <!-- CSS --> 
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="_images/favicon.png">
+
+    <!-- MathJax -->
+    <script>
+    MathJax = {
+        tex: {
+        inlineMath: {'[+]': [['$', '$']]}
+         }
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+
+    <title>Even perfect numbers and the Euclid-Euler theorem | Frankie Gillis</title>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <div class="topnavwrapper">
+        <div class="topnav">
+          <a href="../index.html">Home</a>
+          <a href="../CV.html">CV</a>
+          <a href="../BlogArchive.html">Blog Archive</a>
+          <div class="name">Frankie Gillis</div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Even perfect numbers and the Euclid-Euler theorem</h1>
+        <p>
+            Let $a \in \mathbb{N}$. I denote the sum of the positive divisors of $a$ by $\sigma (a)$, so for example, $\sigma(6) = 1 + 2 + 3 + 6 = 12$. We call $a$ <i>perfect</i>
+            if $\sigma(a) = 2a$, that is if $a$ is equal to the sum of its proper divisors. The purpose of this post is to prove the <i>Euclid-Euler theorem</i>, which completely
+            characterises even perfect numbers. The inspiration for this post comes from a project sheet on the same theorem which is part of the MT4519 Number Theory course here at
+            St Andrews.
+        </p>
+        <p><b>Theorem 1</b>(Euclid-Euler). Let $a \in \mathbb{N}$ be even. Then $a$ is a perfect number if and only if $a$ can be written in the form $a = (2^{p-1}) (2^p - 1)$,
+            where $2^p - 1$ is prime.
+        </p>
+        <p>
+            We begin by establishing a few basic facts about $\sigma$:
+        </p>
+        <p><b>Claim 1.</b> For any $p \in \mathbb{N}$, we have $p$ is prime if and only if $\sigma(p) = p + 1$.
+        </p>
+        <p><i>Proof.</i> If $p \in \mathbb{N}$ is prime, then the positive divisors of $p$ are precisely $1$ and $p$. It follows that $\sigma(p) = p + 1$. Conversely, if $p \gt 1$
+            is not prime, then $p$ has some positive divisor $1 \lt d \lt p$, so $\sigma(p) \ge 1 + p + d \gt 1 + p$. Finally $\sigma(1) = 1 \ne 1 + 1$, so we are done.
+            $\blacksquare$
+        </p>
+        <p><b>Claim 2.</b> For any prime $p$ and $k \in \mathbb{N}$, we have
+            $$ \sigma(p^k) = \frac{p^{k+1} - 1}{p - 1}.$$
+        </p>
+        <p><i>Proof.</i> The set of positive divisors of the integer $p^k$ is precisely $\set{ p^a \mid 0 \le k \le a } = \set{1, p, p^2, \dots, p^k}$, so it follows that
+            $$ \sigma(p^k) = 1 + p + p^2 + \dots + p^k = \frac{p^{k+1} - 1}{p-1},$$
+            as claimed. $\blacksquare$
+        </p>
+        <p><b>Claim 3.</b> For any coprime $a$, $b \in \mathbb{N}$, we have $\sigma(ab) = \sigma(a) \sigma(b)$; that is, $\sigma$ is a multiplicative function.
+        </p>
+        <p><i>Proof.</i> The idea is that, since $a$ and $b$ are coprime, each divisor of $ab$ can be expressed as the product of a divisor of $a$ and of a divisor of $b$ in exactly
+            one way.
+        </p>
+        <p>
+            Let $a = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_n^{\alpha_n}$ be the prime factorisation of $a$, and let $b = q_1^{\beta_1} q_2^{\beta_2} \cdots q_m^{\beta_n}$ be the prime
+            factorisation of $b$. Since $a$ and $b$ are coprime, none of the $p_i$ and $q_i$ are equal. Every divisor of $a$ is of the form $p_1^{x_1} p_2^{x_2} \cdots p_n^{x_n}$,
+            where $0 \le x_i \le \alpha_i$. A similar observation is true of $b$. Conversely, every divisor of $ab$ is of the form $p_1^{x_1} p_2^{x_2} \cdots p_n^{x_n} q_1^{y_1}
+            q_2^{y_2} \cdots q_m^{y_m}$, where $0 \le x_i \le \alpha_i$ and $0 \le y_i \le \beta_i$. The limits on $x_i$ and $y_i$ are true because $a$ and $b$ share no prime factors,
+            so the largest power of $p_i$ dividing $ab$ is equal to the largest power of $p_i$ dividing $a$, and similarly for $b$.
+        </p>
+        <p>
+            By uniqueness of prime factorisation, it follows that each divisor of $ab$ can be expressed uniquely as the product of a divsior of $a$ and a divisor of $b$; and
+            conversely, if $d$ divides $a$ and $e$ divides $b$, then $de$ does indeed divide $ab$. This gives a natural bijective correspondence between divisors of $ab$, and products
+            of a divisor of $a$ and a divisor of $b$.
+        </p>
+        <p>
+            Hence if the divisors of $a$ are $\set{d_1, \dots, d_k}$ and the divisors of $b$ are $\set{e_1, \dots, e_l}$, then $\sigma(a) = d_1 + \cdots + d_k$ and $\sigma(b) = e_1 +
+            \cdots + e_l$, and
+            $$ \sigma(ab) = \sum_{1 \le i \le k} \sum_{1 \le j \le l} d_i e_j $$
+            which is precisely $\sigma(a) \sigma(b)$. $\blacksquare$
+        </p>
+        <p><b>Note.</b> In Number Theory, a function $f : \mathbb{N} \to \mathbb{N}$ (or more generally to $\mathbb{C}$) is usually called <i>multiplicative</i> if it satisfies
+            $f(ab) = f(a)f(b)$ for all coprime $a$ and $b$. If $f(ab) = f(a)f(b)$ for <i>all</i> $a$ and $b$ (not necessarily coprime) then $f$ is called
+            <i>completely multiplicative</i>.
+        </p>
+        <p><b>Note.</b> Together, Claims 2 and 3 allow us to write down a complete characterisation of $\sigma(a)$ depending on the prime factorisation of $a$: if
+            $a = p_1 ^{\alpha_1} \cdots p_k^{\alpha_k}$, then 
+            $$\sigma(a) = \prod_{i=1}^k \left( \frac{p_i^{\alpha_i + 1} - 1}{p_i - 1}\right).$$
+            While we won't use this directly in the proof of theorem 1, it's nice to have.
+        </p>
+        <p>
+            Now, having collected these facts, we are in a good position to approach the proof of theorem 1.
+        </p>
+        <p>
+            <i>Proof of theorem 1.</i>We will first prove the converse, which was known by Euclid. We begin by supposing that $a = (2^{p-1})(2^p - 1)$, where $2^p - 1$ is prime.
+            Since we want $a$ to be even, we may assume that $p \ge 2$. First, notice that $2^{p-1}$ and $2^p - 1$ are coprime: this is true since the only prime dividing
+            $2^{p - 1}$ is $2$, meanwhile $2^p - 1$ is odd so has no factor of $2$. Therefore,
+            $$ \sigma (a) = \sigma(2^{p-1}) \sigma(2^p - 1) = (2^p - 1)(2^p) = 2 \cdot (2^{p-1})(2^p - 1) = 2a $$
+            so $a$ is perfect.
+        </p>
+        <p>
+            The forward direction was not known by Euclid: it was proven by Euler in the 18th Century.
+        </p>
+        <p>
+            We begin by assuming that $a$ is an even perfect number. By the Fundamental Theorem of Arithmetic, we can write $a$ uniquely as $a = 2^k x$, for some natural number
+            $k$ and odd number $x$. Since $x$ is odd, $2^k$ and $x$ are coprime, so $\sigma(a) = \sigma (2^k) \sigma(x) = (2^{k+1} - 1) \sigma(x)$ by Claims 2 and 3. Also, we assumed
+            $a$ was perfect, so $\sigma(a) = 2a = 2^{k+1} x$.
+        </p>
+        <p>
+            It follows that
+            $$ (2^{k+1} - 1) \sigma(x) = 2^{k+1} x,$$
+            and so $\sigma(x) = 2^{k+1} y$, where
+            $$ y = \frac{x}{2^{k+1} - 1}. $$
+            I claim that $y$ is an integer. Indeed, from the definition of $\sigma$, we know that
+            $$ 2^{k+1}y  = \frac{2^{k+1} x}{2^{k+1} - 1}$$
+            is an integer, so $2^{k+1} - 1$ divides $2^{k+1}x$. But $2^{k+1} - 1$ and $2^{k+1}$ are coprime, so $2^{k+1} - 1$ must in fact divide $x$. Hence $y$ is an integer. 
+        </p>
+        <p>
+            By rearranging the definition of $y$, we have $x = y (2^{k+1} - 1)$, so $y$ is a divisor of $x$. Moreover, since $2^{k+1} - 1 \gt 1$ by the assumption that $k \ge 1$, it
+            follows that $y \lt x$. Therefore, $\sigma(x) \ge x + y$.
+        </p>
+        <p>Again from the definiton of $y$, we have $x = y (2^{k + 1} - 1) = 2^{k+1} y - y = \sigma(x) - y$, which leads us to $\sigma(x) = x + y$. Suppose for a contradiction that
+           $y \gt 1$. Then $\sigma(x) \ge 1 + y + x \gt x + y$, which gives the contradiction we wanted. It follows that $y = 1$, and so $\sigma(x) = x + 1$, therefore $x$ is prime by
+           Claim 1.
+        </p>
+        <p>
+            From this, it follows by setting $p = k - 1$ that $a$ can be written in the form $(2^{p-1})(2^p - 1)$, where $2^p - 1$ is prime, as claimed. $\blacksquare$
+        </p>
+        <p>
+            Famously, not much is known about odd perfect numbers. It is not even known whether they exist. It is also not known whether there are infinitely many perfect numbers:
+            by virtue of the Euclid-Euler theorem, this is equivalent to knowing whether there are infinitely many Mersenne primes.
+        </p>
+        <p>
+            In general, $\sigma$ is a very interesting function to play around with, and has surprising links to many ideas in number theory. One can even reformulate the Riemann
+            Hypothesis in terms of $\sigma$: the Riemann Hypothesis is equivalent to the statement that
+            $$ \sigma (n) \lt e^{\gamma} n \log \log n$$
+            for all $n \ge 5041$, where $\gamma$ is the Euler-Mascheroni constant. The above inequality is called <i>Robin's inequality</i>. Please let me know if you make any progress
+            on this.
+        </p>
+    </div>
+    <div class="bottomnavwrapper">
+        <div class="bottomnav">
+            <div style="padding: 30px;">Frankie Gillis</div>
+            <div style="padding: 30px">University of St Andrews</div> 
+            <div style="padding: 30px">fotg1@st-andrews.ac.uk</div> 
+        </div>
+    </div>
+</body>
+
+</html>
