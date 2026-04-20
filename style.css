@@ -42,10 +42,6 @@ li li {
     list-style-type: disc;
 }
 
-li + li {
-  margin-top: 10px;
-}
-
 a:link {
     color: #1756A9;
     background-color: transparent;
