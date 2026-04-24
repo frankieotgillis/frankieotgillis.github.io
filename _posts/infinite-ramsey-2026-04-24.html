@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Boring stuff -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+
+    <!-- CSS --> 
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="_images/favicon.png">
+
+    <!-- MathJax -->
+    <script>
+    MathJax = {
+        tex: {
+        inlineMath: {'[+]': [['$', '$']]}
+         }
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+
+    <title>Two nice consequences of infinite Ramsey's theorem | Frankie Gillis</title>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <div class="topnavwrapper">
+        <div class="topnav">
+          <a href="../index.html">Home</a>
+          <a href="../CV.html">CV</a>
+          <a href="../BlogArchive.html">Blog Archive</a>
+          <div class="name">Frankie Gillis</div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Two nice corollaries of infinite Ramsey's theorem</h1>
+        <p>
+            In this post, I am going to prove two nice corollaries of the infinite version of Ramsey's theorem, which says that if the edges of a $k$-uniform hypergraph with infinitely
+            many vertices are coloured with a finite number of colours, then there must exist an infinite monochrome set of vertices. By a 'monochrome set' here, I mean an infinite
+            set all of whose $k$-subsets are coloured with the same colour. This is a nice way to wrap up my auditing of fifth-year Advanced Combinatorics, before starting to prepare
+            for the modules which actually count towards my Maths degree.
+        </p>
+        <P>
+            To give a preview, the two corollaries of infinite Ramsey I want to cover are:
+        </p>
+        <ul>
+            <li>finite Ramsey's theorem; and</li>
+            <li>the monotone subsequence lemma (or the scenic viewpoints lemma, if you are so inclined).</li>
+        </ul>
+        <p>
+            But first, I want to state and prove infinite Ramsey's theorem properly. Since I'm not taking the exam for this course, I would feel guilty to not have written it up
+            at some point.
+        </p>
+        <p>
+            <b>Theorem</b> (infinite Ramsey's theorem). Suppose that the $k$-subsets of an infinite set $X$ are coloured with $r$ colours $c_1$, $\dots$ , $c_r$. Then, there exists
+            an infinite subset $Y \subseteq X$, all of whose $k$-subsets are the same colour.
+        </p>
+        <p>
+            <i>Proof.</i> The proof is by induction on $k$. When $k = 1$, the statement follows from the infinite pidgeonhole principle.
+            Colouring $1$-subsets is essentially the same as colouring elements, so when the
+            $1$-subsets of $X$ are coloured with finitely many colours, one colour must be used infinitely often. We can take these elements to make up $Y$. This establishes the
+            base case.
+        </p>
+        <p>
+            Now, assume the statement is true for $k-1$. That is, assume that whenever the $(k-1)$-subsets of an infinite set are coloured with $r$ colours, there exists an infinite
+            subset, all of whose $(k-1)$-subsets are coloured the same colour.
+        </p>
+        <p>
+            We must prove the statement for $k$. To do this, let $X$ be an infinite set, and colour all its $k$-subsets with $r$ colours $c_1$, $\dots$ , $c_r$.
+            Inductively we are going to define a
+            sequence $(x_0, x_1, \dots)$ of elements of $X$ and a descending chain $Y_0 \supseteq Y_1 \supseteq Y_2 \supseteq \cdots$ of infinite subsets of $X$ such that for every $i$
+        </p>
+        <ul>
+            <li>$x_i \in Y_i \setminus Y_{i+1}$</li>
+            <li>All $k$-subsets of $\{x_i\} \cup Y_{i+1}$ containing $x_i$ have the same colour
+        </ul>
+        <p>
+            Let $x_0$ be any element of $X$, and let $Y_0$ be the whole of $X$. Consider the infinite set $X \setminus \{x_0\}$. Colour its $(k-1)$-subsets with the same $r$ colours
+            $c_1$, $\dots$ , $c_r$ so that, a $(k-1)$-subset $A$ of $X \setminus \set{x_0}$ is coloured $c_i$ if and only if the corresponding $k$-subset $A \cup \set{x_0}$ is coloured
+            $c_i$. By the inductive hypothesis, there is an infinite subset $Y_1$ of $X \subseteq \{x_0\}$ all of whose $(k-1)$-subsets are coloured with the same colour. But by
+            the way we chose the colouring this means that all the $k$-subsets of ${x_0} \cup Y_1$ have the same colour. Now select any element of $Y_1$ to be $x_1$ and do this again
+            inductively.
+        </p>
+        <p>
+            Now that we have our infinite sequence and infinite chain, we can finish the proof in a timely manner. The main idea is that the colour of a $k$-subset containing only
+            elements from our sequence is determined by whichever element in the set comes first in the sequence.
+        </p>
+        <p>
+            Consider a $k$-subset $\{x_{i}, x_{i_2}, \dots, x_{i_k}\}$
+            containing only elements of $(x_0, x_1, \dots)$, where $i \lt i_2 \lt \dots \lt i_k$. By definition, the colour of this set depends only on $i$. Let $d_i$ be the colour
+            given to sets whose first element is $x_i$. Each $d_i \in \{c_1, \dots, c_r\}$, and there are infinitely many $d_i$, so one of the colours must occur as a $d_i$ infinitely
+            often (if you like, this is by the infinite pidgeonhole principle).
+            Let this colour be $c_l$. Set $Y = \{x_i \mid d_i = c_l\}$. Then every $k$-subset of $Y$ has colour $c_l$. $Y$ is infinite, so we are done. $\blacksquare$
+        </p>
+        <p>
+            I like this proof, because all of the main techniques from the proof of the finite version are used, but without becoming bogged down in the technicalities of actually
+            counting things, so the ideas really shine through. We can also deduce finite Ramsey from infinite Ramsey using the following 'compactness' argument.
+        </p>
+        <p>
+            <b>Theorem</b> (Ramsey's theorem). Let $k$, $r \in \mathbb{N}$ and $l_1$, $\dots$ , $l_r \ge k$. There exists a number $n = R_k(r; l_1, \dots, l_r)$ such that, if the
+            $k$-subsets of an
+            $n$-set $X$ are coloured using $r$ colours $c_1$, $\dots$, $c_r$ then for some $i$ there exists an $l_i$-subset of $X$,
+            all of whose $k$-subsets are coloured $c_i$.
+        </p>
+        <p>
+            <i>Proof</i>. We can deduce this from the infinite version as follows. Let $k$, $r \in \mathbb{N}$, and $l_1$, $\dots$ , $l_r \ge k$.
+            Suppose for a contradiction than Ramsey's theorem
+            fails for these parameters. That means that, for every $n \in \mathbb{N}$, it is possible to colour the $k$-subsets of $[n] = \{1, \dots, n\}$ with $r$ colours, such that,
+            for every $1 \le i \le r$, there is no $l_i$-subset all of whose $k$-subsets have colour $c_i$. Call such a colouring Anti-Ramsey (AR).
+        </p>
+        <p>
+            Collect all the AR colourings of $[m]$ in the set $C_m$. If $m \lt n$, then restricting any AR colouring of $[n]$ to $[m]$ gives
+            an AR colouring of $[m]$. If we denote by $C_m^n$ the set of AR colourings of $[m]$ obtained from restricting an AR colouring of $[n]$, then
+            $C_m^n \subseteq C_m$. This gives an infinite descending chain
+            $$C_m \supseteq C_m^{m+1} \supseteq C_m^{m+2} \supseteq \cdots$$
+            of finite, non-empty sets, so the intersection
+            \[D_m = \bigcap_{n=m}^{\infty} C_m^{n}\]
+            must be non-empty. (For overkill enjoyers, you can deduce this by putting the discrete topology on the finite set $C_m$ and using the result that an infinite descending
+            chain of non-empty compact sets in a Hausdorff space must have non-empty intersection.)
+        </p>
+        <p>
+            Pick a colouring in $D_1$. This colouring has the property that it can be extended to a colouring in $D_2$, and which in turn can be extended to a colouring in $D_3$,
+            and so on. By taking the union of all the finite
+            colourings obtained in this process, we produce a colouring $\kappa$ of $\mathbb{N}$, such that restricting $\kappa$ to $[n]$ for any $n \in \mathbb{N}$ gives an AR
+            colouring of $[n]$.
+        </p>
+        <p>
+            From here, it is not quite immediate that we have actually contradicted infinite Ramsey, but with a little care we can show that we have.
+            By infinite Ramsey's theorem, there is an infinite subset $Y$ of $\mathbb{N}$, all of whose $k$-subsets are coloured the same colour in the $\kappa$
+            colouring. Let this colour be $c_i$. By sliding an interval of the right size over $Y$, we can get back to the finite case to draw out a contradiction.
+        </p>
+        <p>
+            There
+            must exist $n \in \mathbb{N}$ such that $|Y \cap [n]| = l_i$. Every $k$-subset of this intersection is a $k$-subset of $Y$, so is coloured $c_i$. Hence,
+            $Y \cap [n]$ is an $l_i$-subset of $[n]$ all of whose $k$-subsets are coloured $c_i$. But restricting
+            $\kappa$ to $[n]$ was supposed to give an AR colouring of $[n]$ for all $n \in \mathbb{N}$, so this is impossible. We have thus reached a contradiction.
+        </p>
+        <p>
+            This establishes finite Ramsey's theorem. $\blacksquare$
+        </p>
+        <p><b>Theorem</b> (monotone subsequence lemma). Any real sequence $(x_n)_{n=1}^{\infty}$ has a monotone subsequence $(x_{n_k})_{k=1}^{\infty}$.</p>
+        <p>
+            <i>Proof.</i> This is a wonderful exercise in overkill.
+            For each pair $x_i$, $x_j$ where $i \lt j$, colour the $2$-subset $\{x_i, x_j\}$ blue if $x_i \ge x_j$, and red if $x_j \lt x_j$. Using infinite Ramsey's
+            theorem with $k=2$ and $r = 2$, there exists an infinite set $Y = \{x_{n_1}, x_{n_2}, x_{n_3}, \dots\}$ whose $2$-subsets are either all blue or all red. If they are all
+            blue, then $x_{n_i} \ge x_{n_j}$ whenever $n_i \lt n_j$, so the subsequence $(x_{n_k})_{k=1}^{\infty}$ is decreasing. If they are all red, then the opposite is true:
+            $x_{n_i} \lt x_{n_j}$ whenever $n_i \lt n_j$, so the subsequence $(x_{n_k})_{k=1}^{\infty}$. In either case, $(x_{n_k})_{k=1}^{\infty}$ is a monotone subsequence.
+            $\blacksquare$
+        </p>
+        <p>
+            We have thus been able to deduce the scenic viewpoints lemma, entirely foregoing the use of any scenic viewpoints.
+        </p>
+    </div>
+    <div class="bottomnavwrapper">
+        <div class="bottomnav">
+            <div style="padding: 30px;">Frankie Gillis</div>
+            <div style="padding: 30px">University of St Andrews</div> 
+            <div style="padding: 30px">fotg1@st-andrews.ac.uk</div> 
+        </div>
+    </div>
+</body>
+
+</html>
